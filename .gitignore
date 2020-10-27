@@ -1,0 +1,44 @@
+#########
+# common
+#########
+.DS_Store
+node_modules
+package.json
+.env
+.vscode
+.eslintrc.json
+.prettierrc
+.jest.config.js
+.babelrc
+.sequelizerc
+dist-server/*
+logs
+logs/*
+
+#########
+# client
+#########
+
+
+
+#########
+# nginx
+#########
+
+
+#########
+# server
+#########
+
+
+
+
+## Dir
+database
+database/*
+migrations
+migrations/*
+seeders
+seeders/*
+coverage/
+coverage/*
