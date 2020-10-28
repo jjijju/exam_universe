@@ -2,7 +2,7 @@
 
 대중적으로 많이 쓰이는 환경을 도커로 구축해봤다.
 
-> 참고
+> 참고  
 > https://github.com/bear2u/docker-exam-react  
 > https://github.com/serendipity1004/medium-docker-to-kubernetes
 
