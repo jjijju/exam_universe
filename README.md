@@ -2,6 +2,10 @@
 
 대중적으로 많이 쓰이는 환경을 도커로 구축해봤다.
 
+> 참고
+> https://github.com/bear2u/docker-exam-react  
+> https://github.com/serendipity1004/medium-docker-to-kubernetes
+
 구성은 다음과 같다.
 
 -   Client : React
@@ -256,5 +260,4 @@ volumes:
 docker-compose up --build
 or
 docker-compose up
-
 ```
