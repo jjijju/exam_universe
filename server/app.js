@@ -1,12 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import env from './configs/env';
+import express from 'express';
+import createError from 'http-errors';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import indexRouter from './routes/index';
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -14,22 +14,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
+// ! catch 404 and forward to error handler
+app.use((req, res, next) => {
+	next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// ! error handler
+app.use((err, req, res, next) => {
+	let apiError = err;
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+	if (!err.status) {
+		apiError = createError(err);
+	}
+
+	// ! set locals, only providing error in development
+	res.locals.message = apiError.message;
+	res.locals.error = env.node_env === 'development' ? apiError : {};
+
+	// ! render the error page
+	return res.status(apiError.status || 500).json({ message: apiError.message });
 });
 
 module.exports = app;
