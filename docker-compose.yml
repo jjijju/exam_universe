@@ -9,7 +9,7 @@ services:
         ports:
             - '8080:80'
         volumes:
-            - ./Nginx/logs:/var/log/nginx
+            - ./nginx/logs:/var/log/nginx
         networks:
             - backend
 
