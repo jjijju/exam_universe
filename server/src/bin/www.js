@@ -5,10 +5,10 @@ dotenv.config();
 /**
  * Module dependencies.
  */
+
 import app from '../app';
 import debugLib from 'debug';
 import http from 'http';
-
 const debug = debugLib('server:server');
 
 /**
@@ -61,7 +61,7 @@ function onError(error) {
 		throw error;
 	}
 
-	const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+	var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
@@ -83,7 +83,7 @@ function onError(error) {
  */
 
 function onListening() {
-	const addr = server.address();
-	const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+	var addr = server.address();
+	var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
 	debug('Listening on ' + bind);
 }
