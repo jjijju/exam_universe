@@ -1,0 +1,77 @@
+version: '3.4'
+
+services:
+    nginx:
+        container_name: nginx
+        build:
+            dockerfile: Dockerfile
+            context: ./nginx
+        ports:
+            - '80:80'
+        volumes:
+            - ./nginx/logs:/var/log/nginx
+        networks:
+            - backend
+        restart: unless-stopped
+
+    mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+            - data:/data/db
+        ports:
+            - '27017:27017'
+        networks:
+            - backend
+
+	client:
+        container_name: client
+        build:
+            dockerfile: Dockerfile
+            context: ./client
+        ports:
+            - '${CLIENT_PORT}:3000'
+        volumes:
+            - ./client:/usr/app
+            - /usr/app/node_modules
+        env_file:
+            - .env
+        networks:
+            - backend
+
+    server:
+        container_name: server
+        build:
+            dockerfile: Dockerfile
+            context: ./server
+        ports:
+            - '${SERVER_PORT}:3000'
+        volumes:
+            - ./server:/usr/app
+            - /usr/app/node_modules
+        env_file:
+            - .env
+        networks:
+            - backend
+        depends_on:
+            - mongo
+            - redis
+
+    redis:
+        container_name: redis
+        image: redis
+        networks:
+            - backend
+        volumes:
+            - data:/data/redis
+        ports:
+            - '6379:6379'
+        restart: always
+
+networks:
+    backend:
+        driver: bridge
+
+volumes:
+    data:
+        driver: local
