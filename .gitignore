@@ -2,6 +2,7 @@
 # common
 #########
 .DS_Store
+mongodb
 node_modules
 package.json
 .env
@@ -22,6 +23,8 @@ logs/*
 #########
 # nginx
 #########
+nginx
+nginx/*
 
 #########
 # server
