@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 	next(createError(404));
 });
 
-// ! error handler
+// !! error handler
 app.use((err, req, res, next) => {
 	let apiError = err;
 
@@ -36,16 +36,10 @@ app.use((err, req, res, next) => {
 	}
 
 	// ! set locals, only providing error in development
-	res.locals.message = apiError.message;
+	res.locals.message = err.message;
 	res.locals.error = env.node_env === 'development' ? apiError : {};
 
-	return response(
-		res,
-		{
-			message: apiError.message,
-		},
-		apiError.status,
-	);
+	return response(res, { message: apiError.message }, apiError.status);
 });
 
 export default app;

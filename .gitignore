@@ -19,26 +19,22 @@ logs/*
 # client
 #########
 
-
-
 #########
 # nginx
 #########
-
 
 #########
 # server
 #########
 
-
-
-
-## Dir
-database
-database/*
-migrations
-migrations/*
-seeders
-seeders/*
-coverage/
-coverage/*
+#########
+# dir
+#########
+# database
+# database/*
+# migrations
+# migrations/*
+# seeders
+# seeders/*
+# coverage/
+# coverage/*
