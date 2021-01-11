@@ -12,6 +12,7 @@ package.json
 .jest.config.js
 .babelrc
 .sequelizerc
+dist-server
 dist-server/*
 logs
 logs/*
